@@ -1,4 +1,6 @@
 import random
+import time
+print("Welcome to the Millionaire Game!")
 questions = [
 # 🍔 FOOD (1–12)
 ["Which fruit is known as the 'King of Fruits'?", "Apple", "Banana", "Mango", "Orange", 3],
@@ -190,23 +192,29 @@ questions = [
 ["Which is multiple of 5?","12","15","18","22",2],
 ["Which is half of 10?","2","3","5","6",3]
 ]
-Reward = 0
+Reward = 0.
 for i in random.sample(questions, k=len(questions)):
     print(i[0])
     print("1.", i[1])
     print("2.", i[2])
     print("3.", i[3])
     print("4.", i[4])
+    print("5.","Exit Game")
     answer = int(input("Enter your answer (1-4): "))
     if answer == i[5]:
         print("Correct!")
         print("Your last safe reward is :", Reward)
         Reward += 1000
         print("Your current reward is :", Reward)
-    else:
+    elif answer in [1, 2, 3, 4]:
         print("Wrong! The correct answer is:", i[i[5]])
         if Reward >= 5000:
             print("You have passed the safety level. Your reward is:", Reward)  
         else:
             print("You have not passed the safety level. Your reward is: 0")
             Reward = 0
+    elif answer==5:
+        print("You have exited the game.")
+        break
+    else:
+        print("Invalid input. Please enter a number between 1 and 4.")
